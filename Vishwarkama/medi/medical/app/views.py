@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import *
-from django.views.generic import DetailView
+from django.views.generic import DetailView,ListView,CreateView
 from django.contrib.auth.forms import UserCreationForm
 from .forms import *
 from django.contrib import messages
@@ -11,15 +11,21 @@ from datetime import date
 import datetime
 from .decorators import allowed_users,unauthenticated_user,admin_only
 from django.db.models import Count
+from .filters import * 
+from datetime import date
+from django.contrib import auth
 # Create your views here.
 @login_required(login_url="login")
 @allowed_users(allowed_roles=['Patient'])
 def index(request):
     doctors = Doctor.objects.all()
-    result = Doctor.objects.values('spelization').annotate(the_count=Count('spelization'))
+    result = Doctor.objects.values('specalization').annotate(the_count=Count('specalization'))
+    doctor_filter = DoctorFilters(request.GET,queryset=doctors)
+    doctors = doctor_filter.qs
     context = {
         'doctors':doctors,
-        'result':result
+        'result':result,
+        'doctor_filter':doctor_filter
     }
     return render(request,'index.html',context)
 
@@ -55,7 +61,7 @@ def login(request):
             auth_login(request,user)
             return redirect('home')
         else:
-             messages.info(request,"Username or Password is Wrong")
+            messages.info(request,"Username or Password is Wrong")
     return render(request,'accounts/login.html')
 
 def dlogin(request):
@@ -81,9 +87,14 @@ def logoutUser(request):
 def Doctorhome(request):
     date = datetime.date.today()
     logged_in_user_details = Doctor.objects.filter(doctor=request.user)
+    tottal_appinments = Appoinment.objects.count()
+    doctor_appoinments = Appoinment.objects.values('doctor_name').annotate(appoinments=Count('doctor_name'))
+    for doctor_appoinment in doctor_appoinments:
+        print(doctor_appoinment)
     context = {
         'date':date,
-        'doctors':logged_in_user_details
+        'doctors':logged_in_user_details,
+        'tottal_appinments':tottal_appinments
     }
     return render(request,'doctor-home.html',context)
 
@@ -106,19 +117,33 @@ def Doctorprofile(request):
 
 def appoinments(request):
     appoinments = Appoinment.objects.all()
+    filters = AppoinmentFilters(request.GET,queryset=appoinments)
+    appoinments = filters.qs
     context = {
-        'appoinments':appoinments
+        'appoinments':appoinments,
+        'filters':filters
     }
     return render(request,'appoinments.html',context)
 
 def bookappoinments(request):
-    if request.method == "POST":  
-        a_form = AppoinmentForm(request.POST,instance=request.user)
-        if a_form.is_valid():
-            a_form.save()
-            messages.success(request, f'Your Appoinment is booked Successfully...')
-            return redirect("home")
-    else:
-        a_form = AppoinmentForm()
-    return render(request,'booking.html',{'a_form':a_form})
+    if request.method == "GET":
+        form = AppoinmentForm()
+        return render(request,'booking.html',{'form':form})
+    if request.method == "POST":
+        user = request.user
+        appoinment = Appoinment()
+        appoinment.user = user
+        doctor_int_id = request.POST.get('doctor_name')
+        appoinment.doctor_name = Doctor.objects.get(id=doctor_int_id)
+        appoinment.name = request.POST.get('name')
+        appoinment.date = request.POST.get('date')
+        appoinment.phone = request.POST.get('phone')
+        appoinment.reason = request.POST.get('reason')
+        appoinment.save()
+        return redirect('home')
 
+# class AppoinmentCreateView(CreateView):
+#     model = Appoinment
+#     fields = '__all__'
+#     template_name = 'booking.html'
+    

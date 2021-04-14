@@ -5,29 +5,15 @@
 		<meta charset="utf-8">
 		<title>Doccure</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-		
-		<!-- Favicons -->
 		<link href="{% static 'assets/img/favicon.png' %}" rel="icon">
-		
-		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="{% static 'assets/css/app/bootstrap.min.css' %}">
-		
-		<!-- Fontawesome CSS -->
 		<link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/fontawesome.min.css' %}">
 		<link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/all.min.css' %}">
-		
-		<!-- Fancybox CSS -->
 		<link rel="stylesheet" href="{% static 'assets/plugins/fancybox/jque' %}ry.fancybox.min.css">
-		
-		<!-- Main CSS -->
 		<link rel="stylesheet" href="{% static 'assets/css/app/style.css' %}">
 	</head>
 	<body>
-
-		<!-- Main Wrapper -->
 		<div class="main-wrapper">
-		
-			<!-- Header -->
 			<header class="header">
 				<nav class="navbar navbar-expand-lg header-nav">
 					<div class="navbar-header">
@@ -64,12 +50,12 @@
 						<li class="nav-item">
 							<a class="nav-link header-login" href="{% url 'logout' %}">logout</a>
 						</li>
+						<li class="nav-item">
+							<div id="google_translate_element" style="border:2px solid #09e5ab;padding:10px 15px !important;background-color:#09e5ab"></div>
+						</li>
 					</ul>
 				</nav>
 			</header>
-			<!-- /Header -->
-			
-			<!-- Breadcrumb -->
 			<div class="breadcrumb-bar">
 				<div class="container-fluid">
 					<div class="row align-items-center">
@@ -85,9 +71,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- /Breadcrumb -->
-			
-			<!-- Page Content -->
 			<div class="content">
 				<div class="container">
 					<div class="card">
@@ -100,7 +83,7 @@
 									<div class="doc-info-cont">
 										<h4 class="doc-name">{{ object.name }}</h4>
 										<p class="doc-speciality">{{ object.qualification }}</p>
-										<p class="doc-department"><img src="{% static 'assets/img/specialities/specialities-05.png' %}" class="img-fluid" alt="Speciality">{{ object.spelization }}</p>
+										<p class="doc-department"><img src="{% static 'assets/img/specialities/specialities-05.png' %}" class="img-fluid" alt="Speciality">{{ object.specalization }}</p>
 										<div class="rating">
 											<i class="fas fa-star filled"></i>
 											<i class="fas fa-star filled"></i>
@@ -138,10 +121,7 @@
 								</div>
 								<div class="doc-info-right">
 									<div class="doctor-action">
-										<a href="javascript:void(0)" class="btn btn-white fav-btn">
-											<i class="far fa-bookmark"></i>
-										</a>
-										<a href="chat.html" class="btn btn-white msg-btn">
+										<a href="http://localhost:3000/" target="_blank" class="btn btn-white msg-btn">
 											<i class="far fa-comment-alt"></i>
 										</a>
 										<a href="javascript:void(0)" class="btn btn-white call-btn" data-toggle="modal" data-target="#voice_call">
@@ -152,7 +132,7 @@
 										</a>
 									</div>
 									<div class="clinic-booking">
-										<a class="apt-btn" href="{% url 'book-appoinments' %}">Book Appointment</a>
+										<a class="apt-btn" href="{% url 'book-appoinments' %}">Book Now</a>
 									</div>
 								</div>
 							</div>
@@ -160,23 +140,17 @@
 					</div>
 				</div>
 			</div>	
-   
-			<!-- Footer -->
 			<footer class="footer">
-				
-				<!-- Footer Top -->
 				<div class="footer-top">
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
 								<div class="footer-widget footer-about">
 									<div class="footer-logo">
 										<img src="{% static 'assets/img/logof.png' %}" width="200" height="150" alt="logo">
 									</div>
 									<div class="footer-about-content">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+										{% comment %} <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> {% endcomment %}
 										<div class="social-icon">
 											<ul>
 												<li>
@@ -197,73 +171,40 @@
 											</ul>
 										</div>
 									</div>
-								</div>
-								<!-- /Footer Widget -->
-								
+								</div> 
 							</div>
-							
 							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
 								<div class="footer-widget footer-menu">
 									<h2 class="footer-title">For Patients</h2>
 									<ul>
-										<li><a href="search.html">Search for Doctors</a></li>
-										<li><a href="login.html">Login</a></li>
-										<li><a href="register.html">Register</a></li>
-										<li><a href="booking.html">Booking</a></li>
-										<li><a href="patient-dashboard.html">Patient Dashboard</a></li>
+										<li><a href="http://localhost:3000/" target="_blank">Chat</a></li>
+										<li><a href="{% url 'home' %}">Patient Dashboard</a></li>
+										<li><a href="{% url 'logout' %}">Logout</a></li>
 									</ul>
 								</div>
-								<!-- /Footer Widget -->
-								
 							</div>
-							
 							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
-								<div class="footer-widget footer-menu">
-									<h2 class="footer-title">For Doctors</h2>
-									<ul>
-										<li><a href="appointments.html">Appointments</a></li>
-										<li><a href="chat.html">Chat</a></li>
-										<li><a href="login.html">Login</a></li>
-										<li><a href="doctor-register.html">Register</a></li>
-										<li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
-									</ul>
-								</div>
-								<!-- /Footer Widget -->
-								
-							</div>
-							
-							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
 								<div class="footer-widget footer-contact">
 									<h2 class="footer-title">Contact Us</h2>
 									<div class="footer-contact-info">
 										<div class="footer-address">
 											<span><i class="fas fa-map-marker-alt"></i></span>
-											<p> 3556  Beech Street, San Francisco,<br> California, CA 94108 </p>
+											<p> Sri Krishna College of Techonology <br> Coimbatore </p>
 										</div>
 										<p>
 											<i class="fas fa-phone-alt"></i>
-											+1 315 369 5943
+											+91 98765 43210
 										</p>
 										<p class="mb-0">
-											<i class="fas fa-envelope"></i>
-											doccure@example.com
+											<i class="fas fa-globe"></i>
+											Studentgroup@skct.edu.in
 										</p>
 									</div>
 								</div>
-								<!-- /Footer Widget -->
-								
 							</div>
-							
 						</div>
 					</div>
 				</div>
-				<!-- /Footer Top -->
                 <div class="footer-bottom">
 					<div class="container-fluid">
 						<div class="copyright">
@@ -287,14 +228,10 @@
 				</div>
 			</footer>
 		</div>
-		<!-- /Main Wrapper -->
-		
-		<!-- Voice Call Modal -->
 		<div class="modal fade call-modal" id="voice_call">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-body">
-						<!-- Outgoing Call -->
 						<div class="call-box incoming-box">
 							<div class="call-wrapper">
 								<div class="call-inner">
@@ -310,21 +247,14 @@
 								</div>
 							</div>
 						</div>
-						<!-- Outgoing Call -->
-
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- /Voice Call Modal -->
-		
-		<!-- Video Call Modal -->
 		<div class="modal fade call-modal" id="video_call">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-body">
-					
-						<!-- Incoming Call -->
 						<div class="call-box incoming-box">
 							<div class="call-wrapper">
 								<div class="call-inner">
@@ -340,28 +270,20 @@
 								</div>
 							</div>
 						</div>
-						<!-- /Incoming Call -->
-						
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Video Call Modal -->
-		
-		<!-- jQuery -->
+		<script type="text/javascript">
+			function googleTranslateElementInit() {
+			new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+			}
+		</script>
+		<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>	
 		<script src="{% static 'assets/js/app/jquery.min.js' %}"></script>
-		
-		<!-- Bootstrap Core JS -->
 		<script src="{% static 'assets/js/app/popper.min.js' %}"></script>
 		<script src="{% static 'assets/js/app/bootstrap.min.js' %}"></script>
-		
-		<!-- Fancybox JS -->
 		<script src="{% static 'assets/plugins/fancybox/jquery.fancybox.min.js' %}"></script>
-		
-		<!-- Custom JS -->
 		<script src="{% static 'assets/js/app/script.js' %}"></script>
-		
 	</body>
-
-<!-- Mirrored from doccure-html.dreamguystech.com/template/doctor-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 18 Dec 2020 06:06:25 GMT -->
 </html>

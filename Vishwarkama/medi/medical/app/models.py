@@ -6,7 +6,7 @@ from PIL import Image
 class Doctor(models.Model):
     name = models.CharField(max_length=100,blank=True,null=True)
     qualification = models.CharField(max_length=50,null=True,blank=True)
-    spelization = models.CharField(max_length=100,blank=True,null=True)
+    specalization = models.CharField(max_length=100,blank=True,null=True)
     location = models.CharField(max_length=100,blank=True,null=True)
     doctor = models.ForeignKey(User,on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg',upload_to='profile_pics')

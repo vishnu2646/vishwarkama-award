@@ -24,13 +24,13 @@
 							</span>
 						</a>
 						<a href="index.html" class="navbar-brand logo">
-							<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+							<img src="{% static 'assets/img/logof.png' %}" class="img-fluid" alt="Logo">
 						</a>
 					</div>
 					<div class="main-menu-wrapper">
 						<div class="menu-header">
 							<a href="index.html" class="menu-logo">
-								<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+								<img src="{% static 'assets/img/logof.png' %}" class="img-fluid" alt="Logo">
 							</a>
 							<a id="menu_close" class="menu-close" href="javascript:void(0);">
 								<i class="fas fa-times"></i>
@@ -70,8 +70,6 @@
 								<p class="contact-info-header"> +1 315 369 5943</p>
 							</div>
 						</li> {% endcomment %}
-						
-						<!-- User Menu -->
 						<li class="nav-item dropdown has-arrow logged-item">
 							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 								<span class="user-img">
@@ -92,14 +90,12 @@
 								<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
 							</div>
 						</li>
-						<!-- /User Menu -->
-						
+						<li class="nav-item contact-item ">
+							<div id="google_translate_element" style="border:2px solid #09e5ab;padding:10px 15px !important;background-color:#09e5ab"></div>
+						</li>
 					</ul>
 				</nav>
 			</header>
-			<!-- /Header -->
-			
-			<!-- Breadcrumb -->
 			<div class="breadcrumb-bar">
 				<div class="container-fluid">
 					<div class="row align-items-center">
@@ -144,24 +140,24 @@
 									<nav class="dashboard-menu">
 										<ul>
 											<li>
-												<a href="doctor-dashboard.html">
+												<a href="{% url 'doctor-home' %}">
 													<i class="fas fa-columns"></i>
 													<span>Dashboard</span>
 												</a>
 											</li>
 											<li class="active">
-												<a href="appointments.html">
+												<a href="{% url 'appoinments' %}">
 													<i class="fas fa-calendar-check"></i>
 													<span>Appointments</span>
 												</a>
 											</li>
-											<li>
+											{% comment %} <li>
 												<a href="my-patients.html">
 													<i class="fas fa-user-injured"></i>
 													<span>My Patients</span>
 												</a>
-											</li>
-											<li>
+											</li> {% endcomment %}
+											{% comment %} <li>
 												<a href="schedule-timings.html">
 													<i class="fas fa-hourglass-start"></i>
 													<span>Schedule Timings</span>
@@ -178,32 +174,32 @@
 													<i class="fas fa-star"></i>
 													<span>Reviews</span>
 												</a>
-											</li>
+											</li> {% endcomment %}
 											<li>
-												<a href="chat-doctor.html">
+												<a href="http://localhost:3000/" target="_blank">
 													<i class="fas fa-comments"></i>
 													<span>Message</span>
-													<small class="unread-msg">23</small>
+													{% comment %} <small class="unread-msg">23</small> {% endcomment %}
 												</a>
 											</li>
 											<li>
-												<a href="doctor-profile-settings.html">
+												<a href="{% url 'doctor-profile' %}">
 													<i class="fas fa-user-cog"></i>
 													<span>Profile Settings</span>
 												</a>
 											</li>
-											<li>
+											{% comment %} <li>
 												<a href="social-media.html">
 													<i class="fas fa-share-alt"></i>
 													<span>Social Media</span>
 												</a>
-											</li>
-											<li>
+											</li> {% endcomment %}
+											{% comment %} <li>
 												<a href="doctor-change-password.html">
 													<i class="fas fa-lock"></i>
 													<span>Change Password</span>
 												</a>
-											</li>
+											</li> {% endcomment %}
 											<li>
 												<a href="{% url 'logout' %}">
 													<i class="fas fa-sign-out-alt"></i>
@@ -214,18 +210,17 @@
 									</nav>
 								</div>
 							</div>
-							<!-- /Profile Sidebar -->
-							
 						</div>
-						
 						<div class="col-md-7 col-lg-8 col-xl-9">
 							<div class="appointments">
+								<form method="get">
+									{{filters.form}}
+									<button type="submit" class="btn btn-primary submit-btn">Search</button>
+								</form>
+								<br>
 								{% for appoinment in appoinments %}
 								<div class="appointment-list">
 									<div class="profile-info-widget">
-										{% comment %} <a href="patient-profile.html" class="booking-doc-img">
-											<img src="assets/img/patients/patient.jpg" alt="User Image">
-										</a> {% endcomment %}
 										<div class="profile-det-info">
 											<h3><a href="#">{{appoinment.name}}</a></h3>
 											<div class="patient-details">
@@ -235,7 +230,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="appointment-action">
+									{% comment %} <div class="appointment-action">
 										<a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
 											<i class="far fa-eye"></i> View
 										</a>
@@ -245,34 +240,25 @@
 										<a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
 											<i class="fas fa-times"></i> Cancel
 										</a>
-									</div>
+									</div> {% endcomment %}
 								</div>
 								{% endfor %}
 							</div>
 						</div>
 					</div>
-
 				</div>
-
 			</div>		
-			<!-- /Page Content -->
-   
-			<!-- Footer -->
 			<footer class="footer">
-				
-				<!-- Footer Top -->
 				<div class="footer-top">
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
 								<div class="footer-widget footer-about">
 									<div class="footer-logo">
-										<img src="assets/img/footer-logo.png" alt="logo">
+										<img src="{% static 'assets/img/logof.png' %}" alt="logo" width="200" height="100">
 									</div>
 									<div class="footer-about-content">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+										{% comment %} <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> {% endcomment %}
 										<div class="social-icon">
 											<ul>
 												<li>
@@ -294,13 +280,8 @@
 										</div>
 									</div>
 								</div>
-								<!-- /Footer Widget -->
-								
 							</div>
-							
-							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
+							{% comment %} <div class="col-lg-3 col-md-6">
 								<div class="footer-widget footer-menu">
 									<h2 class="footer-title">For Patients</h2>
 									<ul>
@@ -311,61 +292,42 @@
 										<li><a href="patient-dashboard.html">Patient Dashboard</a></li>
 									</ul>
 								</div>
-								<!-- /Footer Widget -->
-								
-							</div>
-							
+							</div> {% endcomment %}
 							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
 								<div class="footer-widget footer-menu">
 									<h2 class="footer-title">For Doctors</h2>
 									<ul>
-										<li><a href="appointments.html">Appointments</a></li>
-										<li><a href="chat.html">Chat</a></li>
-										<li><a href="login.html">Login</a></li>
-										<li><a href="doctor-register.html">Register</a></li>
-										<li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
+										<li><a href="{% url 'appoinments' %}">Appointments</a></li>
+										<li><a href="http://localhost:3000/" target="_blank">Chat</a></li>
+										<li><a href="{% url 'logout' %}">Logout</a></li>
+										<li><a href="{% url 'doctor-home' %}">Doctor Dashboard</a></li>
 									</ul>
 								</div>
-								<!-- /Footer Widget -->
-								
 							</div>
-							
 							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
 								<div class="footer-widget footer-contact">
 									<h2 class="footer-title">Contact Us</h2>
 									<div class="footer-contact-info">
 										<div class="footer-address">
 											<span><i class="fas fa-map-marker-alt"></i></span>
-											<p> 3556  Beech Street, San Francisco,<br> California, CA 94108 </p>
+											<p> Sri Krishna College Of Techonology,<br> Coimbatore</p>
 										</div>
 										<p>
 											<i class="fas fa-phone-alt"></i>
-											+1 315 369 5943
+											+91 98765 43210
 										</p>
 										<p class="mb-0">
 											<i class="fas fa-envelope"></i>
-											doccure@example.com
+											studentgroup@skct.edu.in
 										</p>
 									</div>
 								</div>
-								<!-- /Footer Widget -->
-								
 							</div>
-							
 						</div>
 					</div>
 				</div>
-				<!-- /Footer Top -->
-				
-				<!-- Footer Bottom -->
                 <div class="footer-bottom">
 					<div class="container-fluid">
-					
-						<!-- Copyright -->
 						<div class="copyright">
 							<div class="row">
 								<div class="col-md-6 col-lg-6">
@@ -374,28 +336,18 @@
 									</div>
 								</div>
 								<div class="col-md-6 col-lg-6">
-								
-									<!-- Copyright Menu -->
 									<div class="copyright-menu">
 										<ul class="policy-menu">
 											<li><a href="term-condition.html">Terms and Conditions</a></li>
 											<li><a href="privacy-policy.html">Policy</a></li>
 										</ul>
 									</div>
-									<!-- /Copyright Menu -->
-									
 								</div>
 							</div>
 						</div>
-						<!-- /Copyright -->
-						
 					</div>
 				</div>
-				<!-- /Footer Bottom -->
-				
 			</footer>
-			<!-- /Footer -->
-		   
 		</div>
 		<!-- /Main Wrapper -->
 		
@@ -443,6 +395,12 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript">
+			function googleTranslateElementInit() {
+			new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+			}
+		</script>
+		<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 		<script src="{% static 'assets/js/jquery.min.js' %}"></script>
 		<script src="{% static 'assets/js/popper.min.js' %}"></script>
 		<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>

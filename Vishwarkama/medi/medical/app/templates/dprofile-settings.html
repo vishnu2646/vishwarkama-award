@@ -16,11 +16,7 @@
 		<link rel="stylesheet" href="{% static 'assets/css/app/style.css' %}">
 	</head>
 	<body>
-
-		<!-- Main Wrapper -->
 		<div class="main-wrapper">
-		
-			<!-- Header -->
 			<header class="header">
 				<nav class="navbar navbar-expand-lg header-nav">
 					<div class="navbar-header">
@@ -52,13 +48,13 @@
 								<a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
 									<li><a href="{% url 'doctor-home' %}">Doctor Dashboard</a></li>
-									<li><a href="appointments.html">Appointments</a></li>
+									{% comment %} <li><a href="appointments.html">Appointments</a></li>
 									<li><a href="schedule-timings.html">Schedule Timing</a></li>
 									<li><a href="my-patients.html">Patients List</a></li>
 									<li><a href="patient-profile.html">Patients Profile</a></li>
 									<li><a href="chat-doctor.html">Chat</a></li>
 									<li><a href="invoices.html">Invoices</a></li>
-									<li class="active"><a href="doctor-profile-settings.html">Profile Settings</a></li>
+									<li class="active"><a href="doctor-profile-settings.html">Profile Settings</a></li> {% endcomment %}
 								</ul>
 							</li>	
 							<li class="login-link">
@@ -98,6 +94,9 @@
 								<a class="dropdown-item" href="doctor-profile-settings.html">Profile Settings</a>
 								<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
 							</div>
+						</li>
+						<li class="nav-item contact-item ">
+							<div id="google_translate_element" style="border:2px solid #09e5ab;padding:10px 15px !important;background-color:#09e5ab"></div>
 						</li>
 					</ul>
 				</nav>
@@ -143,18 +142,18 @@
 									<nav class="dashboard-menu">
 										<ul>
 											<li>
-												<a href="doctor-dashboard.html">
+												<a href="{% url 'doctor-home' %}">
 													<i class="fas fa-columns"></i>
 													<span>Dashboard</span>
 												</a>
 											</li>
 											<li>
-												<a href="appointments.html">
+												<a href="{% url 'appoinments' %}">
 													<i class="fas fa-calendar-check"></i>
 													<span>Appointments</span>
 												</a>
 											</li>
-											<li>
+											{% comment %} <li>
 												<a href="my-patients.html">
 													<i class="fas fa-user-injured"></i>
 													<span>My Patients</span>
@@ -177,34 +176,34 @@
 													<i class="fas fa-star"></i>
 													<span>Reviews</span>
 												</a>
-											</li>
-											<li>
+											</li> {% endcomment %}
+											{% comment %} <li>
 												<a href="chat-doctor.html">
 													<i class="fas fa-comments"></i>
 													<span>Message</span>
 													<small class="unread-msg">23</small>
 												</a>
-											</li>
+											</li> {% endcomment %}
 											<li class="active">
-												<a href="doctor-profile-settings.html">
+												<a href="{% url 'doctor-profile' %}">
 													<i class="fas fa-user-cog"></i>
-													<span>Profile Settings</span>
+													<span>Profile</span>
 												</a>
 											</li>
-											<li>
+											{% comment %} <li>
 												<a href="social-media.html">
 													<i class="fas fa-share-alt"></i>
 													<span>Social Media</span>
 												</a>
-											</li>
-											<li>
+											</li> {% endcomment %}
+											{% comment %} <li>
 												<a href="doctor-change-password.html">
 													<i class="fas fa-lock"></i>
 													<span>Change Password</span>
 												</a>
-											</li>
+											</li> {% endcomment %}
 											<li>
-												<a href="index.html">
+												<a href="{% url 'logout' %}">
 													<i class="fas fa-sign-out-alt"></i>
 													<span>Logout</span>
 												</a>
@@ -289,7 +288,7 @@
 										<img src="{% static 'assets/img/logof.png' %}" width="200" height="150" alt="logo">
 									</div>
 									<div class="footer-about-content">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+										{% comment %} <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> {% endcomment %}
 										<div class="social-icon">
 											<ul>
 												<li>
@@ -311,13 +310,9 @@
 										</div>
 									</div>
 								</div>
-								<!-- /Footer Widget -->
-								
 							</div>
 							
 							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
 								<div class="footer-widget footer-menu">
 									<h2 class="footer-title">For Patients</h2>
 									<ul>
@@ -328,13 +323,9 @@
 										<li><a href="patient-dashboard.html">Patient Dashboard</a></li>
 									</ul>
 								</div>
-								<!-- /Footer Widget -->
-								
 							</div>
 							
 							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
 								<div class="footer-widget footer-menu">
 									<h2 class="footer-title">For Doctors</h2>
 									<ul>
@@ -345,14 +336,10 @@
 										<li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
 									</ul>
 								</div>
-								<!-- /Footer Widget -->
-								
 							</div>
 							
 							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
-								<div class="footer-widget footer-contact">
+								{% comment %} <div class="footer-widget footer-contact">
 									<h2 class="footer-title">Contact Us</h2>
 									<div class="footer-contact-info">
 										<div class="footer-address">
@@ -368,21 +355,13 @@
 											doccure@example.com
 										</p>
 									</div>
-								</div>
-								<!-- /Footer Widget -->
-								
+								</div> {% endcomment %}
 							</div>
-							
 						</div>
 					</div>
 				</div>
-				<!-- /Footer Top -->
-				
-				<!-- Footer Bottom -->
                 <div class="footer-bottom">
 					<div class="container-fluid">
-					
-						<!-- Copyright -->
 						<div class="copyright">
 							<div class="row">
 								<div class="col-md-6 col-lg-6">
@@ -391,29 +370,25 @@
 									</div>
 								</div>
 								<div class="col-md-6 col-lg-6">
-								
-									<!-- Copyright Menu -->
 									<div class="copyright-menu">
 										<ul class="policy-menu">
 											<li><a href="term-condition.html">Terms and Conditions</a></li>
 											<li><a href="privacy-policy.html">Policy</a></li>
 										</ul>
 									</div>
-									<!-- /Copyright Menu -->
-									
 								</div>
 							</div>
 						</div>
-						<!-- /Copyright -->
-						
 					</div>
 				</div>
-				<!-- /Footer Bottom -->
-				
 			</footer>
-			<!-- /Footer -->
-		   
 		</div>
+		<script type="text/javascript">
+			function googleTranslateElementInit() {
+			new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+			}
+		</script>
+		<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 		<script src="{% static 'assets/js/app/jquery.min.js' %}"></script>
 		<script src="{% static 'assets/js/app/popper.min.js' %}"></script>
 		<script src="{% static 'assets/js/app/bootstrap.min.js' %}"></script>
